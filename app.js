@@ -6,8 +6,8 @@ pathOptions = ['img/bag.jpg', 'img/banana.jpg', 'img/bathroom.jpg', 'img/boots.j
 
 timesShown = 0;
 timesClicked = 0;
-thisImgs = [];
-lastImgs = [];
+thisImgsArr = [];
+lastImgsArr = [];
 
 function NewImg(imgName, path, timesShown, timesClicked, imgID) {
   this.imgName = imgName;
@@ -17,20 +17,18 @@ function NewImg(imgName, path, timesShown, timesClicked, imgID) {
   this.imgID = imgID;
 };
 
-var doMath = function() {
-  var indexNum = (Math.floor(Math.random) * 19);
-  thisImgs.push(indexNum);
-  }
 
 var newImgObj = function() {
   for (i = 0; i < 3; i++) {
-    if (this.lastImgs.contains(indexNum)) {
-      i--;
-      doMath();
-
     var indexNum = (Math.floor(Math.random) * 19);
-    if lastImgs.contains(indexNum) {
+    if (this.lastImgsArr.contains(indexNum) || this.thisImgsArr.contains(indexNum)) {
+      i--;
+    } else {
+        var thisImg = new NewImg(imgNames[indexNum], pathOptions[indexNum], 0, 0);
+        this.thisImgs.push(indexNum);
+    }
 
+  var thisImg = new NewImg(imgNames[indexNum], pathOptions[indexNum], 0, 0);
     }
 
   }
