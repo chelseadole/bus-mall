@@ -9,14 +9,14 @@ var timesClicked = 0;
 var thisImgsArr = [];
 var lastImgsArr = [];
 
+var imgClicks = 0;
+
 function NewImg(imgName, path, timesShown, timesClicked) {
   this.imgName = imgName;
   this.path = path;
   this.timesShown = timesShown;
   this.timesClicked = timesClicked;
-};
-
-newImgObj();
+}
 
 function newImgObj() {
   for (var i = 1; i <= 3; i++) {
@@ -28,8 +28,23 @@ function newImgObj() {
       thisImgsArr.push(indexNum);
       var linkedImg = document.getElementById('img' + i);
       linkedImg.setAttribute('src', pathOptions[indexNum]);
+      linkedImg.addEventListener('click', eventListen());
     }
   }
   lastImgsArr = thisImgsArr;
-  thisImgsArr = [];
+//   thisImgsArr = [];
+// for (var i = 1; i <= 3; i++) {
+//   htmlID.addEventListener('click', eventListen());
+//
 };
+
+function eventListen() {
+  if (imgClicks === 25) {
+    htmlID.removeEventListener('click', eventListen());
+  } else {
+    imgClicks++;
+    newImgObj();
+  }
+};
+
+newImgObj();
