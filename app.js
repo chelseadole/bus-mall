@@ -6,6 +6,8 @@ pathOptions = ['img/bag.jpg', 'img/banana.jpg', 'img/bathroom.jpg', 'img/boots.j
 
 timesShown = 0;
 timesClicked = 0;
+thisImgs = [];
+lastImgs = [];
 
 function NewImg(imgName, path, timesShown, timesClicked, imgID) {
   this.imgName = imgName;
@@ -13,13 +15,29 @@ function NewImg(imgName, path, timesShown, timesClicked, imgID) {
   this.timesShown = timesShown;
   this.timesClicked = timesClicked;
   this.imgID = imgID;
+};
 
-  numberGen = function() {
-
+var doMath = function() {
+  var indexNum = (Math.floor(Math.random) * 19);
+  thisImgs.push(indexNum);
   }
 
-  createNamePath = function() {
+var newImgObj = function() {
+  for (i = 0; i < 3; i++) {
+    if (this.lastImgs.contains(indexNum)) {
+      i--;
+      doMath();
 
-  };
+    var indexNum = (Math.floor(Math.random) * 19);
+    if lastImgs.contains(indexNum) {
 
+    }
+
+  }
 }
+while
+var iterInt = (Math.floor(Math.random) * 19);
+
+
+var createNamePath = function() {
+  for
