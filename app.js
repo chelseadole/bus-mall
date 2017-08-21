@@ -28,19 +28,18 @@ function newImgObj() {
       thisImgsArr.push(indexNum);
       var linkedImg = document.getElementById('img' + i);
       linkedImg.setAttribute('src', pathOptions[indexNum]);
-      linkedImg.addEventListener('click', eventListen());
-    }
+    };
   }
   lastImgsArr = thisImgsArr;
-//   thisImgsArr = [];
-// for (var i = 1; i <= 3; i++) {
-//   htmlID.addEventListener('click', eventListen());
-//
+  thisImgsArr = [];
 };
+
+var allImgsID = document.getElementById('allImgs');
+allImgsID.addEventListener('click', eventListen);
 
 function eventListen() {
   if (imgClicks === 25) {
-    htmlID.removeEventListener('click', eventListen());
+    htmlID.removeEventListener('click', eventListen);
   } else {
     imgClicks++;
     newImgObj();
