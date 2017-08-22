@@ -8,8 +8,8 @@ var timesShown = 0;
 var timesClicked = 0;
 var thisImgsArr = [];
 var lastImgsArr = [];
-var timesClicked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var timesShown = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var allObjects = [];
+var totalClicks = 0;
 
 function NewImg(imgName, path) {
   this.imgName = imgName;
@@ -18,12 +18,14 @@ function NewImg(imgName, path) {
   this.timesShown = 0;
 }
 
-function createVars() {
-  for (var indexNum = 0; indexNum < imgNames.length; i++) {
-    var thisImg = new NewImg(imgNames[indexNum], pathOptions[indexNum]);
+function createObjs() {
+  for (var i = 0; i < imgNames.length; i++) {
+    var thisImg = new NewImg(imgNames[i], pathOptions[i]);
+    allObjects.push(thisImg);
   }
 };
 
+var lastClicked;
 
 function newImgObj() {
   for (var i = 1; i <= 3; i++) {
@@ -31,12 +33,12 @@ function newImgObj() {
     if (lastImgsArr.includes(indexNum) || thisImgsArr.includes(indexNum)) {
       i--;
     } else {
-      var thisImg = new NewImg(imgNames[indexNum], pathOptions[indexNum]);
       thisImgsArr.push(indexNum);
-      // var NAME = timesShown.indexOf(indexNum);
-      // [indexNum]++;
+      totalClicks++;
+      lastClicked = indexNum;
+      allObjects[indexNum].timesShown++;
       var linkedImg = document.getElementById('img' + i);
-      linkedImg.setAttribute('src', pathOptions[indexNum]);
+      linkedImg.setAttribute('src', allObjects[indexNum].path);
       linkedImg.addEventListener('click', eventListen);
     };
   }
@@ -44,21 +46,16 @@ function newImgObj() {
   thisImgsArr = [];
 };
 
-function makeImgs() {
-  var thisImg = new NewImg(imgNames[thisImgsArr[0]], pathOptions[thisImgArr[0]]);
-}
-//
-// var allImgsID = document.getElementById('allImgs');
-// allImgsID.addEventListener('click', eventListen);
-
 function eventListen() {
-  if (imgClicks === 25) {
-    htmlID.removeEventListener('click', eventListen);
+  if (totalClicks === 25) {
+    linkedImg.removeEventListener('click', eventListen);
   } else {
-    imgClicks++;
-
+    allObjects[lastClicked].timesClicked++;
+    console.log(allObjects[lastClicked]);
+    lastClicked;
     newImgObj();
   }
 };
 
+createObjs();
 newImgObj();
