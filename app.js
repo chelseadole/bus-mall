@@ -72,7 +72,6 @@ function eventListen(event) {
 function showResults() {
   var ulTarget = document.getElementById('results');
   for (var i = 0; i < imgNames.length; i++) {
-    // var liContent = allObjects[i].timesClicked + ' votes for the ' + allObjects[i].imgName + '.';
     var newLi = document.createElement('li');
     newLi.innerText = allObjects[i].timesClicked + ' votes for the ' + allObjects[i].imgName + '.';
     ulTarget.appendChild(newLi);
