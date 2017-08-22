@@ -22,8 +22,6 @@ function createObjs() {
   }
 };
 
-var lastClicked = 0;
-
 function newImgObj() {
   for (var i = 1; i <= 3; i++) {
     var indexNum = Math.floor(Math.random() * 18);
@@ -42,10 +40,19 @@ function newImgObj() {
   lastImgsArr = thisImgsArr;
   totalClicks++;
   thisImgsArr = [];
-  lastClicked = indexNum;
 };
 
 function eventListen(event) {
+  if (event.target.id == 'img1') {
+    var targetProd = allObjects[lastImgsArr[0]];
+    targetProd.timesClicked++;
+  } else if (event.target.id == 'img2') {
+    var targetProd = allObjects[lastImgsArr[1]];
+    targetProd.timesClicked++;
+  } else if (event.target.id == 'img3'){
+    var targetProd = allObjects[lastImgsArr[2]];
+    targetProd.timesClicked++;
+  }
   if (totalClicks === 3) {
     var img1Target = document.getElementById('img1');
     var img2Target = document.getElementById('img2');
@@ -54,19 +61,8 @@ function eventListen(event) {
     document.getElementById('img2').removeEventListener('click', eventListen);
     document.getElementById('img3').removeEventListener('click', eventListen);
     showResults();
-  } else if (event.target.id == 'img1') {
-    var targetProd = allObjects[lastImgsArr[0]];
-    targetProd.timesClicked++;
-    newImgObj();
-  } else if (event.target.id == 'img2') {
-    var targetProd = allObjects[lastImgsArr[1]];
-    targetProd.timesClicked++;
-    newImgObj();
-  } else {
-    var targetProd = allObjects[lastImgsArr[2]];
-    targetProd.timesClicked++;
-    newImgObj();
   }
+  newImgObj();
 };
 
 function showResults() {
