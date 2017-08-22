@@ -8,15 +8,22 @@ var timesShown = 0;
 var timesClicked = 0;
 var thisImgsArr = [];
 var lastImgsArr = [];
+var timesClicked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var timesShown = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-var imgClicks = 0;
-
-function NewImg(imgName, path, timesShown, timesClicked) {
+function NewImg(imgName, path) {
   this.imgName = imgName;
   this.path = path;
-  this.timesShown = timesShown;
-  this.timesClicked = timesClicked;
+  this.timesClicked = 0;
+  this.timesShown = 0;
 }
+
+function createVars() {
+  for (var indexNum = 0; indexNum < imgNames.length; i++) {
+    var thisImg = new NewImg(imgNames[indexNum], pathOptions[indexNum]);
+  }
+};
+
 
 function newImgObj() {
   for (var i = 1; i <= 3; i++) {
@@ -24,24 +31,32 @@ function newImgObj() {
     if (lastImgsArr.includes(indexNum) || thisImgsArr.includes(indexNum)) {
       i--;
     } else {
-      var thisImg = new NewImg(imgNames[indexNum], pathOptions[indexNum], 0, 0);
+      var thisImg = new NewImg(imgNames[indexNum], pathOptions[indexNum]);
       thisImgsArr.push(indexNum);
+      // var NAME = timesShown.indexOf(indexNum);
+      // [indexNum]++;
       var linkedImg = document.getElementById('img' + i);
       linkedImg.setAttribute('src', pathOptions[indexNum]);
+      linkedImg.addEventListener('click', eventListen);
     };
   }
   lastImgsArr = thisImgsArr;
   thisImgsArr = [];
 };
 
-var allImgsID = document.getElementById('allImgs');
-allImgsID.addEventListener('click', eventListen);
+function makeImgs() {
+  var thisImg = new NewImg(imgNames[thisImgsArr[0]], pathOptions[thisImgArr[0]]);
+}
+//
+// var allImgsID = document.getElementById('allImgs');
+// allImgsID.addEventListener('click', eventListen);
 
 function eventListen() {
   if (imgClicks === 25) {
     htmlID.removeEventListener('click', eventListen);
   } else {
     imgClicks++;
+
     newImgObj();
   }
 };
