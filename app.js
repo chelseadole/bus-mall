@@ -9,6 +9,9 @@ var lastImgsArr = [];
 var allObjects = [];
 var totalClicks = 0;
 
+createObjs();
+newImgObj();
+
 function NewImg(imgName, path, timesClicked, timesShown) {
   this.imgName = imgName;
   this.path = path;
@@ -27,14 +30,15 @@ function newImgObj() {
     var indexNum = Math.floor(Math.random() * 18);
     if (lastImgsArr.includes(indexNum) || thisImgsArr.includes(indexNum)) {
       i--;
-    } else if (totalClicks < 25){
+    } else if (totalClicks <= 25){
       thisImgsArr.push(indexNum);
       allObjects[indexNum].timesShown++;
       var linkedImg = document.getElementById('img' + i);
       linkedImg.setAttribute('src', allObjects[indexNum].path);
       linkedImg.addEventListener('click', eventListen);
     } else {
-      linkedImg.removeEventListener('click', eventListen);
+      totalClicks++;
+      eventListen();
     };
   }
   lastImgsArr = thisImgsArr;
@@ -53,13 +57,13 @@ function eventListen(event) {
     var targetProd = allObjects[lastImgsArr[2]];
     targetProd.timesClicked++;
   }
-  if (totalClicks === 3) {
+  if (totalClicks === 25) {
     var img1Target = document.getElementById('img1');
     var img2Target = document.getElementById('img2');
     var img3Target = document.getElementById('img3');
-    document.getElementById('img1').removeEventListener('click', eventListen);
-    document.getElementById('img2').removeEventListener('click', eventListen);
-    document.getElementById('img3').removeEventListener('click', eventListen);
+    img1Target.removeEventListener('click', eventListen);
+    img2Target.removeEventListener('click', eventListen);
+    img3Target.removeEventListener('click', eventListen);
     showResults();
   }
   newImgObj();
@@ -68,12 +72,8 @@ function eventListen(event) {
 function showResults() {
   var ulTarget = document.getElementById('results');
   for (var i = 0; i < imgNames.length; i++) {
-    // var liContent = allObjects[i].timesClicked + ' votes for the ' + allObjects[i].imgName + '.';
     var newLi = document.createElement('li');
     newLi.innerText = allObjects[i].timesClicked + ' votes for the ' + allObjects[i].imgName + '.';
     ulTarget.appendChild(newLi);
   };
 }
-
-createObjs();
-newImgObj();
