@@ -1,0 +1,14 @@
+h1 {
+  font-family: Impact;
+  font-size: 50px;
+  color: rgba(62, 80, 101, 0.91);
+}
+
+#img1, #img2, #img3 {
+  position: relative;
+  width: 20%;
+}
+
+img:hover {
+  border: thin solid red;
+}
