@@ -31,7 +31,7 @@ function newImgObj() {
     var indexNum = Math.floor(Math.random() * 18);
     if (lastImgsArr.includes(indexNum) || thisImgsArr.includes(indexNum)) {
       i--;
-    } else if (totalClicks <= 3){
+    } else if (totalClicks <= 25){
       thisImgsArr.push(indexNum);
       allObjects[indexNum].timesShown++;
       var linkedImg = document.getElementById('img' + i);
@@ -61,7 +61,7 @@ function eventListen(event) {
     clickedProducts.push(targetProd);
     targetProd.timesClicked++;
   }
-  if (totalClicks === 3) {
+  if (totalClicks === 25) {
     var img1Target = document.getElementById('img1');
     var img2Target = document.getElementById('img2');
     var img3Target = document.getElementById('img3');
