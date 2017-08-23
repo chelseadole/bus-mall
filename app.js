@@ -91,16 +91,14 @@ function data() {
 
 function showResults() {
   var context = document.getElementById('chart').getContext('2d');
-  // var context = document.getElementById.getContext('2d');
   var chartConfig = {
     type: 'bar',
     data: {
-      labels: chartLabels, // x-axis labels for every entry in your data set. It should match up with the number of things you're plotting (if it's a bar chart)
-      datasets: [{ // <-- notice that this can be an array of multiple data sets.
-        // each data set is its own object literal.
-        label: '# of Votes', // <-- the label of this one data set
-        data: chartClicked, // <-- where your data actually goes. just the numbers
-        backgroundColor: [ // <-- this can be either one single color or a color for each item in your bar chart.
+      labels: chartLabels,
+      datasets: [{
+        label: '# of Votes',
+        data: chartClicked,
+        backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 206, 86, 0.2)',
@@ -116,16 +114,14 @@ function showResults() {
           'rgba(153, 102, 255, 1)',
           'rgba(255, 159, 64, 1)'
         ],
-        borderWidth: 1 // border width in pixels
+        borderWidth: 1
       }]
     },
     options: {
-      // maintainAspectRatio: false,
-      // animation: {
-      //   duration: 1000
-      // },
+      animation: {
+        duration: 5000,
+      },
       title: {
-        display: true,
         text: 'Product Click Frequency'
       },
       scales: {
@@ -139,12 +135,3 @@ function showResults() {
   };
   var myChart = new Chart(context, chartConfig);
 }
-// function showResults() {
-//   var ulTarget = document.getElementById('results');
-//   for (var i = 0; i < imgNames.length; i++) {
-//     var newLi = document.createElement('li');
-//     newLi.innerText = allObjects[i].timesClicked + ' votes for the ' + allObjects[i].imgName + '.';
-//     ulTarget.appendChild(newLi);
-//     console.log(clickedProducts);
-//   };
-// }
