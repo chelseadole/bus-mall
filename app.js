@@ -27,11 +27,11 @@ function createObjs() {
 };
 
 function newImgObj() {
-  for (var i = 1; i <= 3; i++) {
+  for (var i = 1; i < 4 ; i++) {
     var indexNum = Math.floor(Math.random() * 18);
     if (lastImgsArr.includes(indexNum) || thisImgsArr.includes(indexNum)) {
       i--;
-    } else if (totalClicks <= 3){
+    } else if (totalClicks <= 25){
       thisImgsArr.push(indexNum);
       allObjects[indexNum].timesShown++;
       var linkedImg = document.getElementById('img' + i);
@@ -50,18 +50,14 @@ function newImgObj() {
 function eventListen(event) {
   if (event.target.id === 'img1') {
     var targetProd = allObjects[lastImgsArr[0]];
-    clickedProducts.push(targetProd);
-    targetProd.timesClicked++;
   } else if (event.target.id === 'img2') {
     var targetProd = allObjects[lastImgsArr[1]];
-    clickedProducts.push(targetProd);
-    targetProd.timesClicked++;
   } else if (event.target.id === 'img3'){
     var targetProd = allObjects[lastImgsArr[2]];
-    clickedProducts.push(targetProd);
-    targetProd.timesClicked++;
   }
-  if (totalClicks === 3) {
+  clickedProducts.push(targetProd);
+  targetProd.timesClicked++;
+  if (totalClicks === 25) {
     var img1Target = document.getElementById('img1');
     var img2Target = document.getElementById('img2');
     var img3Target = document.getElementById('img3');
@@ -97,22 +93,8 @@ function showResults() {
       datasets: [{
         label: '# of Votes',
         data: chartClicked,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 159, 64, 1)',
         borderWidth: 1
       }]
     },
@@ -123,7 +105,6 @@ function showResults() {
       title: {
         text: 'Product Click Frequency'
       },
-      // maintainAspectRatio: false,
       scales: {
         yAxes: [{
           ticks: {

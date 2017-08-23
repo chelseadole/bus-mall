@@ -1,7 +1,7 @@
 h1 {
   font-family: Impact;
   font-size: 50px;
-  color: rgba(62, 80, 101, 0.91);
+  color: white;
 }
 
 #img1, #img2, #img3 {
@@ -10,11 +10,22 @@ h1 {
 }
 
 img:hover {
-  border: thin solid red;
+  border: thin solid blue;
 }
 
 #chart {
   max-width: 50em;
   max-height: 50em;
   margin-left: 0;
+  background-color: rgba(244, 245, 246, 0.53);
+}
+
+body {
+  background-color: rgba(212, 76, 47, 0.78);
+}
+
+p {
+  color: white;
+  font-family: Helvetica;
+  font-size: 15px;
 }
