@@ -10,7 +10,11 @@ var allObjects = [];
 var totalClicks = 0;
 var clickedProducts = [];
 
-createObjs();
+if (localStorage.allObjects) {
+  var allObjects = JSON.parse(localStorage.allObjects);
+} else {
+  createObjs();
+}
 newImgObj();
 
 function NewImg(imgName, path, timesClicked, timesShown) {
@@ -47,6 +51,10 @@ function newImgObj() {
   thisImgsArr = [];
 };
 
+var chartLabels = [];
+var chartClicked = [];
+var chartShown = [];
+
 function eventListen(event) {
   if (event.target.id === 'img1') {
     var targetProd = allObjects[lastImgsArr[0]];
@@ -64,24 +72,15 @@ function eventListen(event) {
     img1Target.removeEventListener('click', eventListen);
     img2Target.removeEventListener('click', eventListen);
     img3Target.removeEventListener('click', eventListen);
-    data();
-    showResults();
-  }
-  newImgObj();
-};
-
-var chartLabels = [];
-var chartClicked = [];
-var chartShown = [];
-
-function data() {
-  for (var i = 0; i < allObjects.length; i++) {
-    if (allObjects[i].timesClicked > 0) {
+    for (var i = 0; i < allObjects.length; i++) {
       chartLabels.push(allObjects[i].imgName);
       chartClicked.push(allObjects[i].timesClicked);
       chartShown.push(allObjects[i].timesShown);
     }
+    localStorage.setItem('allObjects', JSON.stringify(allObjects));
+    showResults();
   }
+  newImgObj();
 };
 
 function showResults() {
