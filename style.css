@@ -12,3 +12,9 @@ h1 {
 img:hover {
   border: thin solid red;
 }
+
+#chart {
+  max-width: 50em;
+  max-height: 50em;
+  margin-left: 0;
+}

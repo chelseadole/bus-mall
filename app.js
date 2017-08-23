@@ -31,7 +31,7 @@ function newImgObj() {
     var indexNum = Math.floor(Math.random() * 18);
     if (lastImgsArr.includes(indexNum) || thisImgsArr.includes(indexNum)) {
       i--;
-    } else if (totalClicks <= 25){
+    } else if (totalClicks <= 3){
       thisImgsArr.push(indexNum);
       allObjects[indexNum].timesShown++;
       var linkedImg = document.getElementById('img' + i);
@@ -48,20 +48,20 @@ function newImgObj() {
 };
 
 function eventListen(event) {
-  if (event.target.id == 'img1') {
+  if (event.target.id === 'img1') {
     var targetProd = allObjects[lastImgsArr[0]];
     clickedProducts.push(targetProd);
     targetProd.timesClicked++;
-  } else if (event.target.id == 'img2') {
+  } else if (event.target.id === 'img2') {
     var targetProd = allObjects[lastImgsArr[1]];
     clickedProducts.push(targetProd);
     targetProd.timesClicked++;
-  } else if (event.target.id == 'img3'){
+  } else if (event.target.id === 'img3'){
     var targetProd = allObjects[lastImgsArr[2]];
     clickedProducts.push(targetProd);
     targetProd.timesClicked++;
   }
-  if (totalClicks === 25) {
+  if (totalClicks === 3) {
     var img1Target = document.getElementById('img1');
     var img2Target = document.getElementById('img2');
     var img3Target = document.getElementById('img3');
@@ -79,12 +79,11 @@ var chartClicked = [];
 var chartShown = [];
 
 function data() {
-  console.log('here!');
   for (var i = 0; i < allObjects.length; i++) {
     if (allObjects[i].timesClicked > 0) {
-      chartLabels.push(clickedProducts[i].imgName);
-      chartClicked.push(clickedProducts[i].timesClicked);
-      chartShown.push(clickedProducts[i].timesShown);
+      chartLabels.push(allObjects[i].imgName);
+      chartClicked.push(allObjects[i].timesClicked);
+      chartShown.push(allObjects[i].timesShown);
     }
   }
 };
@@ -124,6 +123,7 @@ function showResults() {
       title: {
         text: 'Product Click Frequency'
       },
+      // maintainAspectRatio: false,
       scales: {
         yAxes: [{
           ticks: {
