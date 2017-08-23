@@ -10,16 +10,12 @@ var allObjects = [];
 var totalClicks = 0;
 var clickedProducts = [];
 
-createObjs();
-newImgObj();
-
-if (localStorage.names) {
-  var storageClicked = JSON.stringify(chartClicked);
-  JSON.parse('names').push(storageClicked);
-  showResults();
+if (localStorage.allObjects) {
+  var allObjects = JSON.parse(localStorage.allObjects);
 } else {
   createObjs();
 }
+newImgObj();
 
 function NewImg(imgName, path, timesClicked, timesShown) {
   this.imgName = imgName;
@@ -81,6 +77,8 @@ function eventListen(event) {
       chartClicked.push(allObjects[i].timesClicked);
       chartShown.push(allObjects[i].timesShown);
     }
+    localStorage.setItem('allObjects', JSON.stringify(allObjects));
+    showResults();
   }
   newImgObj();
 };
