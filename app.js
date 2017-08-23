@@ -27,7 +27,7 @@ function createObjs() {
 };
 
 function newImgObj() {
-  for (var i = 1; i <= 3; i++) {
+  for (var i = 1; i < 4; i++) {
     var indexNum = Math.floor(Math.random() * 18);
     if (lastImgsArr.includes(indexNum) || thisImgsArr.includes(indexNum)) {
       i--;
@@ -50,17 +50,13 @@ function newImgObj() {
 function eventListen(event) {
   if (event.target.id === 'img1') {
     var targetProd = allObjects[lastImgsArr[0]];
-    clickedProducts.push(targetProd);
-    targetProd.timesClicked++;
   } else if (event.target.id === 'img2') {
     var targetProd = allObjects[lastImgsArr[1]];
-    clickedProducts.push(targetProd);
-    targetProd.timesClicked++;
   } else if (event.target.id === 'img3'){
     var targetProd = allObjects[lastImgsArr[2]];
-    clickedProducts.push(targetProd);
-    targetProd.timesClicked++;
   }
+  clickedProducts.push(targetProd);
+  targetProd.timesClicked++;
   if (totalClicks === 25) {
     var img1Target = document.getElementById('img1');
     var img2Target = document.getElementById('img2');
