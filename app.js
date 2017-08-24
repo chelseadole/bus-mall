@@ -54,6 +54,7 @@ function newImgObj() {
 var chartLabels = [];
 var chartClicked = [];
 var chartShown = [];
+var percentage = [];
 
 function eventListen(event) {
   if (event.target.id === 'img1') {
@@ -76,6 +77,7 @@ function eventListen(event) {
       chartLabels.push(allObjects[i].imgName);
       chartClicked.push(allObjects[i].timesClicked);
       chartShown.push(allObjects[i].timesShown);
+      percentage.push((allObjects[i].timesClicked) / (allObjects[i].timesShown) * 100);
     }
     localStorage.setItem('allObjects', JSON.stringify(allObjects));
     showResults();
@@ -90,10 +92,22 @@ function showResults() {
     data: {
       labels: chartLabels,
       datasets: [{
-        label: '# of Votes',
+        label: '# Times Clicked',
         data: chartClicked,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgba(255, 159, 64, 1)',
+        borderWidth: 1
+      },{
+        label: '# Times Shown',
+        data: chartShown,
+        backgroundColor: 'rgb(137, 205, 215)',
+        borderColor: 'rgba(255, 159, 64, 1)',
+        borderWidth: 1
+      },{
+        label: '% Times Chosen',
+        data: percentage,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(217, 53, 171, 0.93)',
         borderWidth: 1
       }]
     },
