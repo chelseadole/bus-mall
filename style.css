@@ -30,7 +30,7 @@ header {
 }
 
 img:hover {
-  border: thin solid blue;
+  border: medium solid rgb(229, 240, 107);
 }
 
 #chart {
